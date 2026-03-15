@@ -1,38 +1,54 @@
-# To run and test the code you need to update 4 places:
-# 1. Change MY_EMAIL/MY_PASSWORD to your own details.
-# 2. Go to your email provider and make it allow less secure apps.
-# 3. Update the SMTP ADDRESS to match your email provider.
-# 4. Update birthdays.csv to contain today's month and day.
-# See the solution video in the 100 Days of Python Course for explainations.
-
-
-from datetime import datetime
-import pandas
-import random
-import smtplib
+import requests
 import os
+from dotenv import load_dotenv
+from twilio.rest import Client
 
-# import os and use it to get the Github repository secrets
-MY_EMAIL = os.environ.get("MY_EMAIL")
-MY_PASSWORD = os.environ.get("MY_PASSWORD")
+load_dotenv(".env.txt")
+OWN_Endpoint = "https://api.openweathermap.org/data/2.5/forecast"
+my_api = os.getenv("OWN_API")
+account_sid = os.getenv("ACC_SID")
+auth_token = os.getenv("AUTH_TKN")
 
-today = datetime.now()
-today_tuple = (today.month, today.day)
+# 31.958090
+# 35.945808
+params = {
+    "lat": 31.958090,
+    "lon": 35.945808,
+    "appid": my_api,
+    "cnt": 4,
+}
 
-data = pandas.read_csv("birthdays.csv")
-birthdays_dict = {(data_row["month"], data_row["day"])                  : data_row for (index, data_row) in data.iterrows()}
-if today_tuple in birthdays_dict:
-    birthday_person = birthdays_dict[today_tuple]
-    file_path = f"letter_templates/letter_{random.randint(1, 3)}.txt"
-    with open(file_path) as letter_file:
-        contents = letter_file.read()
-        contents = contents.replace("[NAME]", birthday_person["name"])
+response = requests.get(url=OWN_Endpoint, params=params)
+response.raise_for_status()
+weather_data = response.json()
 
-    with smtplib.SMTP("YOUR EMAIL PROVIDER SMTP SERVER ADDRESS") as connection:
-        connection.starttls()
-        connection.login(MY_EMAIL, MY_PASSWORD)
-        connection.sendmail(
-            from_addr=MY_EMAIL,
-            to_addrs=birthday_person["email"],
-            msg=f"Subject:Happy Birthday!\n\n{contents}"
-        )
+
+id_list = []
+
+umbrella = False
+
+for three_hour_window in range(3):
+    id_num = weather_data["list"][three_hour_window]["weather"][0]["id"]
+    id_list.append(id_num)
+
+for weatherper3 in id_list:
+    if weatherper3 < 700:
+        umbrella = True
+
+if umbrella:
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+        from_="whatsapp:+14155238886",
+        body="It's going to rain in school, make sure to bring a jacket. 🧥",
+        to="whatsapp:+962795466752"
+    )
+else:
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+        from_="whatsapp:+14155238886",
+        body="It's NOT going to rain in school, feel free to wear whichever you want. 😉",
+        to="whatsapp:+962795466752"
+    )
+print(message.status)
+
+
