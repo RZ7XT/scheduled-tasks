@@ -1,13 +1,11 @@
 import requests
 import os
-from dotenv import load_dotenv
 from twilio.rest import Client
 
-load_dotenv(".env.txt")
 OWN_Endpoint = "https://api.openweathermap.org/data/2.5/forecast"
-my_api = os.getenv("OWN_API")
-account_sid = os.getenv("ACC_SID")
-auth_token = os.getenv("AUTH_TKN")
+my_api = os.environ.get("OWN_API")
+account_sid = os.environ.get("ACC_SID")
+auth_token = os.environ.get("AUTH_TKN")
 
 # 31.958090
 # 35.945808
