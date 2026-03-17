@@ -7,11 +7,11 @@ my_api = os.environ.get("OWN_API")
 account_sid = os.environ.get("ACC_SID")
 auth_token = os.environ.get("AUTH_TKN")
 
-# 31.958090
-# 35.945808
+# 32.040917
+# 35.931787
 params = {
-    "lat": 31.958090,
-    "lon": 35.945808,
+    "lat": 32.040917,
+    "lon": 35.931787,
     "appid": my_api,
     "cnt": 4,
 }
