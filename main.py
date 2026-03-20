@@ -36,16 +36,16 @@ for weatherper3 in id_list:
 if umbrella:
     client = Client(account_sid, auth_token)
     message = client.messages.create(
-        from_="+14155238886",
+        from_="+13185944642",
         body="It's going to rain in school, make sure to bring a jacket. 🧥",
         to="+962795466752"
     )
 else:
     client = Client(account_sid, auth_token)
     message = client.messages.create(
-        from_="whatsapp:+14155238886",
+        from_="+13185944642",
         body="It's NOT going to rain in school, feel free to wear whichever you want. 😉",
-        to="whatsapp:+962795466752"
+        to="+962795466752"
     )
 print(message.status)
 
