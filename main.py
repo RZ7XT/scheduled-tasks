@@ -2,11 +2,12 @@ import requests
 import os
 from twilio.rest import Client
 
-client = Client(account_sid, auth_token)
 OWN_Endpoint = "https://api.openweathermap.org/data/2.5/forecast"
 my_api = os.environ.get("OWN_API")
 account_sid = os.environ.get("ACC_SID")
 auth_token = os.environ.get("AUTH_TKN")
+
+client = Client(account_sid, auth_token)
 
 # 32.040917
 # 35.931787
