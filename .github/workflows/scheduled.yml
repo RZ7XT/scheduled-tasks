@@ -41,7 +41,8 @@ jobs:
         env:
           # Your secrets are available as environment variables
           # Add more secrets in Settings > Secrets > Actions
-          OWN_API: ${{ secrets.OWN_API }}
-          ACC_SID: ${{ secrets.ACC_SID }}
-          AUTH_TKN: ${{ secrets.AUTH_TKN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_BOT_CHAT_ID: ${{ secrets.TELEGRAM_BOT_CHAT_ID }}
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
+          FD_SHEETY_BEARER: ${{ secrets.FD_SHEETY_BEARER }}
         run: python main.py
