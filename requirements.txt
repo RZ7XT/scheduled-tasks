@@ -1,5 +1,4 @@
 requests
-pprint
 datetime
 os
 requests_cache
