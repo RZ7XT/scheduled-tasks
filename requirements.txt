@@ -1,4 +1,3 @@
 requests
 datetime
-os
 requests_cache
