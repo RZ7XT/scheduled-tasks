@@ -1,8 +1,5 @@
 import os
 import requests
-from dotenv import load_dotenv
-
-load_dotenv(r"C:\Users\Qusai Balaawi\PycharmProjects\.env.txt")
 
 
 class DataManager:
