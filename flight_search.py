@@ -1,8 +1,5 @@
 import os
-from dotenv import load_dotenv
 from requests_cache import CachedSession
-
-load_dotenv(r"C:\Users\Qusai Balaawi\PycharmProjects\.env.txt")
 
 
 class FlightSearch:
