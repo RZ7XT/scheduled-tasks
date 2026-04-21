@@ -19,7 +19,7 @@ for destination in sheet_data:
     my_flight_data = flight_search.check_flights(origin_city_code="AMM",
                                 destination_city_code=destination['iataCode'],
                                 from_time=tomorrow,
-                                to_time=six_months_from_today)
+                                to_time=one_week_from_today)
     cheapest_flight = find_cheapest_flight(my_flight_data, return_date=one_week_from_today)
     print(f"{destination['city']}: {cheapest_flight.price} JOD")
 
