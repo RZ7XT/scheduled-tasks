@@ -15,12 +15,9 @@ class DataManager:
     def get_destination_data(self):
         response = requests.get(self.sheety_url, headers=self.authorization)
         data = response.json()
-        if "prices" in data:
-            self.prices_data = data["prices"]
+        self.prices_data = data["prices"]
 
-            return self.prices_data
-        else:
-            return
+        return self.prices_data
 
     def update_lowest_price(self, row_id, new_price):
         new_data = {
