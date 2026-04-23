@@ -13,11 +13,27 @@ class DataManager:
         self.prices_data = {}
 
     def get_destination_data(self):
+    try:
         response = requests.get(self.sheety_url, headers=self.authorization)
+        response.raise_for_status()
         data = response.json()
         self.prices_data = data["prices"]
-
+        
+        
+        with open("backup_prices.json", "w") as f:
+            json.dump(data, f)
+            
         return self.prices_data
+
+    except Exception as e:
+        print(f"Sheety failed, switching to backup: {e}")
+       
+        try:
+            with open("backup_prices.json", "r") as f:
+                data = json.load(f)
+                return data["prices"]
+        except FileNotFoundError:
+            return []
 
     def update_lowest_price(self, row_id, new_price):
         new_data = {
