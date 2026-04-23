@@ -1,0 +1,46 @@
+{
+  "prices": [
+    {
+      "city": "Madrid",
+      "iataCode": "MAD",
+      "lowestPrice": 618,
+      "id": 2
+    },
+    {
+      "city": "Frankfurt",
+      "iataCode": "FRA",
+      "lowestPrice": 557,
+      "id": 3
+    },
+    {
+      "city": "Tokyo",
+      "iataCode": "HND",
+      "lowestPrice": 917,
+      "id": 4
+    },
+    {
+      "city": "Granada",
+      "iataCode": "GRX",
+      "lowestPrice": 729,
+      "id": 5
+    },
+    {
+      "city": "Rome",
+      "iataCode": "FCO",
+      "lowestPrice": 623,
+      "id": 6
+    },
+    {
+      "city": "New York",
+      "iataCode": "JFK",
+      "lowestPrice": 715,
+      "id": 7
+    },
+    {
+      "city": "Paris",
+      "iataCode": "CDG",
+      "lowestPrice": 592,
+      "id": 8
+    }
+  ]
+}
