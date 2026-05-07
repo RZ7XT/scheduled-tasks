@@ -4,6 +4,18 @@ from flight_search import FlightSearch
 from flight_data import find_cheapest_flight
 from notification_manager import NotificationManager
 
+#Personal: Countdown Until Event.
+
+day_in_question = date(2026, 7, 23)
+
+now = date.today()
+
+difference = day_in_question - now
+if difference.days >= 0:
+    notification_manager.send_telegram_message(f"{difference.days} Days Left Until Wizari.")
+
+#--------------------------------------------------------------------------------------------
+
 notification_manager = NotificationManager()
 
 data_manager = DataManager()
@@ -27,14 +39,4 @@ for destination in sheet_data:
         print(f"Lower price flight found to {destination['city']}!")
         data_manager.update_lowest_price(destination["id"], cheapest_flight.price)
         notification_manager.send_telegram_message(f"Low price alert for {destination['city']}!\n\n Only {cheapest_flight.price} JOD to travel from AMM to {destination["iataCode"]}, on {tomorrow.strftime("%Y/%m/%d")} --> {one_week_from_today.strftime("%Y/%m/%d")}")
-
-
-#Personal: Countdown Until Event.
-
-day_in_question = date(2026, 7, 23)
-
-now = date.today()
-
-difference = day_in_question - now
-if difference.days >= 0:
-    notification_manager.send_telegram_message(f"{difference.days} Days Left Until Wizari.")
+        
