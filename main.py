@@ -36,5 +36,5 @@ day_in_question = date(2026, 7, 23)
 now = date.today()
 
 difference = day_in_question - now
-if difference >= 0:
+if difference.days >= 0:
     notification_manager.send_telegram_message(f"{difference.days} Days Left Until Wizari.")
