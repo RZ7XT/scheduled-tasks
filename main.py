@@ -6,6 +6,8 @@ from notification_manager import NotificationManager
 
 #Personal: Countdown Until Event.
 
+notification_manager = NotificationManager()
+
 day_in_question = date(2026, 7, 23)
 
 now = date.today()
@@ -15,8 +17,6 @@ if difference.days >= 0:
     notification_manager.send_telegram_message(f"{difference.days} Days Left Until Wizari.")
 
 #--------------------------------------------------------------------------------------------
-
-notification_manager = NotificationManager()
 
 data_manager = DataManager()
 sheet_data = data_manager.get_destination_data()
